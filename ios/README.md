@@ -8,6 +8,7 @@ iOS 项目开发、重构、安全审计相关的 Claude prompt 模板。用于�
 
 | 文件 | 用途 | 使用场景 |
 |------|------|----------|
+| **USAGE.md** | 📖 使用指南 | **新手必读** - 如何使用这些模板 |
 | **plan_architecture.md** | 架构规划 | 大型架构改动前的分析和方案设计 |
 | **plan_security.md** | 安全检测 | 反调试/反Hook/反注入/反重签名 |
 | **plan_performance.md** | 性能优化 | 主线程卡顿/崩溃/OOM 问题分析 |
@@ -86,6 +87,7 @@ plan_architecture.md → code_execute_step.md（分步执行） → review_and_r
 ```
 ios/
 ├── README.md                    # 本文档
+├── USAGE.md                     # 使用指南（新手必读）
 ├── checklist.md                 # 审计检查清单
 ├── plan_architecture.md         # 架构/模块设计
 ├── plan_security.md             # 安全防护
@@ -99,6 +101,10 @@ ios/
 ---
 
 ## 快速开始
+
+### 0. 新手必读
+
+**首次使用？** 请先阅读 `USAGE.md` 了解详细的使用方法和完整案例。
 
 ### 1. 选择模板
 
