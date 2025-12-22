@@ -115,6 +115,18 @@ ios/
 - 重构老代码 → `plan_refactor_legacy.md`
 - 日志优化 → `plan_logging.md`
 
+#### 模板选择速查表
+
+| 任务场景 | 推荐组合 | 备注 |
+|----------|----------|------|
+| 大型架构演进 | `plan_architecture.md` → `code_execute_step.md` → `review_and_rollback.md` | 方案评审后再逐步实施 |
+| 安全防护/越狱检测 | `plan_security.md` → `code_execute_step.md` → `checklist.md` | 重点关注 P0/P1 安全项 |
+| 主线程卡顿/性能瓶颈 | `plan_performance.md` → `code_execute_step.md` → `review_and_rollback.md` | 执行阶段配合性能指标验证 |
+| Objective-C 老代码重构 | `plan_refactor_legacy.md` → `code_execute_step.md` → `checklist.md` | 每次仅处理一个方法/类 |
+| 日志系统/埋点优化 | `plan_logging.md` → `code_execute_step.md` → `review_and_rollback.md` | 需验证隐私/合规性 |
+
+若任务跨多个领域，可按优先级组合多个 plan，例如“安全 + 性能”分别输出方案，再用 `code_execute_step.md` 串联执行顺序。
+
 ### 2. 填写背景信息
 
 每个 plan 模板都包含【背景】【目标】【约束】等字段，按实际情况填写。
@@ -123,9 +135,13 @@ ios/
 
 AI 会输出结构化的分析和执行方案。
 
+> 建议：将 AI 输出直接保存到需求/技术方案文档中，便于评审与后续追踪。
+
 ### 4. 逐步执行
 
 使用 `code_execute_step.md` 控制每一步的修改范围，确保不失控。
+
+执行时可以将同一 plan 的步骤拆成编号链路（如 2.1、2.2），逐条喂给 `code_execute_step.md`，并在 diff 中标注“步骤编号 + 影响文件”，方便审查。
 
 ### 5. 审查和验证
 
