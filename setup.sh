@@ -114,9 +114,10 @@ for template in "${TEMPLATE_DIRS[@]}"; do
 done
 echo ""
 echo -e "   示例："
-echo -e "   ${GREEN}@ios/plan_security.md${NC}  - 引用 iOS 安全规划模板"
-echo -e "   ${GREEN}@flutter/xxx.md${NC}        - 引用 Flutter 模板（创建后）"
-echo -e "   ${GREEN}@react/xxx.md${NC}          - 引用 React 模板（创建后）"
+echo -e "   ${GREEN}@ryan_ios/plan_security.md${NC}  - 引用 iOS 安全规划模板"
+echo -e "   ${GREEN}@ryan_flutter/xxx.md${NC}        - 引用 Flutter 模板"
+echo -e "   ${GREEN}@ryan_react/xxx.md${NC}          - 引用 React 模板"
+echo -e "   ${GREEN}@ryan_ts/xxx.md${NC}             - 引用 TypeScript 模板"
 echo ""
 echo -e "${BLUE}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
 echo -e "${YELLOW}🔧 验证配置:${NC}"
