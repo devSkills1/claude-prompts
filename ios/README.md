@@ -106,7 +106,36 @@ ios/
 
 **首次使用？** 请先阅读 `USAGE.md` 了解详细的使用方法和完整案例。
 
-### 1. 选择模板
+### 1. 模板说明
+
+#### 通用理念模板（针对 iOS 优化）
+
+以下模板在所有技术栈中具有相同的设计理念，但本目录版本已针对 iOS 工具链和最佳实践优化：
+
+- **code_execute_step.md** - 逐步执行控制（防 AI 失控）
+  - 核心理念：一次只执行一个小步骤，确保可控可回滚
+  - iOS 优化：集成 Git、Xcode 构建、单元测试验证流程
+  - 示例代码：Objective-C/Swift 语法
+
+- **review_and_rollback.md** - 代码审查与回滚
+  - 核心理念：P0/P1/P2 分级审查，确保质量和可回滚性
+  - iOS 优化：App Store 审核风险检查、私有 API 检测、KVO/Block 内存管理
+  - 检查项：iOS 特定的崩溃率、性能指标
+
+💡 **使用提示：** 这些模板虽然名称与其他技术栈相同，但内容已针对 iOS 深度优化，直接使用即可获得最佳体验。
+
+#### iOS 专属模板
+
+- **plan_architecture.md** - 架构/模块设计（iOS MVC/MVVM/VIPER）
+- **plan_security.md** - 安全防护（反调试/反 Hook/越狱检测）
+- **plan_performance.md** - 性能优化（主线程卡顿/OOM/启动优化）
+- **plan_refactor_legacy.md** - Objective-C 老代码重构
+- **plan_logging.md** - 日志系统（异步/崩溃保护）
+- **checklist.md** - iOS 审计清单（安全/性能/审核）
+
+---
+
+### 2. 选择模板
 
 根据你的任务类型选择对应的 plan 模板：
 - 架构调整 → `plan_architecture.md`

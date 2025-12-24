@@ -301,6 +301,87 @@ rm -rf ~/.claude/
 
 ---
 
+## 🏗️ 架构设计说明
+
+### 为什么每个技术栈都有相似的模板？
+
+虽然文件名相同（如 `code_execute_step.md`、`review_and_rollback.md`），但内容针对不同技术栈和用户画像优化：
+
+| 技术栈 | 模板风格 | 用户画像 | 示例差异 |
+|--------|---------|---------|---------|
+| **iOS** | 简洁版（123行） | 资深 iOS 开发者 | Objective-C/Swift 示例、App Store 审核检查 |
+| **Flutter** | 详细版（322行） | 跨平台新手较多 | Dart 示例、Widget 测试、平台兼容性 |
+| **React** | 组件化风格（309行） | Web 开发为主 | JSX/Hooks 示例、Web Vitals、无障碍 |
+| **TypeScript** | 类型系统重点 | 类型安全追求者 | 泛型设计、类型推导、strict 模式 |
+
+### 设计原则：完整独立 > DRY 原则
+
+**为什么不创建 `common/` 目录？**
+
+经过专业 agents 审查（Code Reviewer、Architect、DX Optimizer），我们选择保持技术栈完整独立：
+
+1. **用户体验优先**
+   ```bash
+   # 一个前缀搞定所有
+   @ios/plan_security.md
+   @ios/code_execute_step.md
+   @ios/checklist.md
+
+   # 而非混合引用
+   @common/code_execute_step.md
+   @ios/plan_security.md
+   ```
+
+2. **内容本就不同**
+   - 文本相似 ≠ 知识重复
+   - iOS 的"执行控制"检查项 vs Flutter 的"执行控制"检查项本质不同
+   - 强行合并会丢失技术栈特定的上下文
+
+3. **自动补全完美**
+   ```bash
+   输入: @ios/<Tab>
+   显示: 所有 iOS 可用模板（包括 code_execute_step.md）
+
+   # common/ 方案会导致：
+   输入: @ios/<Tab>
+   显示: 只有 plan_*.md，看不到 code_execute_step.md
+   ```
+
+4. **架构清晰**
+   - 每个技术栈是完整独立的模块（Self-Contained Module Pattern）
+   - 可以独立删除、移动、分享
+   - 零耦合，互不影响
+
+5. **磁盘占用可忽略**
+   - 4 个技术栈 × 2 个通用模板 × 平均 8KB ≈ 64KB
+   - 2024 年这点空间完全不是问题
+
+### 如何在多个技术栈间同步改进？
+
+虽然保持独立，但通用改进可以轻松同步：
+
+```bash
+# 方式 1：批量替换
+sed -i '' 's/旧内容/新内容/g' */code_execute_step.md
+
+# 方式 2：diff 对比后手动合并
+diff ios/code_execute_step.md flutter/code_execute_step.md
+
+# 方式 3：使用脚本（scripts/sync-improvements.sh）
+```
+
+### 业界参考
+
+类似的文档/模板项目也采用独立架构：
+
+- **Yeoman Generators** - 每个生成器完整独立，即使有大量重复
+- **VSCode 文档** - 每个语言文档完整独立，不抽象共享
+- **Awesome-* 系列** - 每个分类独立，没有 common/ 目录
+
+**共同点：** 文档项目优先考虑**完整性和用户体验**，而非代码复用。
+
+---
+
 ## 🎓 最佳实践
 
 1. **分步执行** - 一次只做一小步，不要让 AI 一次改太多代码
