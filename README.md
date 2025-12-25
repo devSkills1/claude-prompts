@@ -1,6 +1,8 @@
 # Claude Prompts 模板集
 
 > 结构化 Prompt 模板库，适配 Claude Code，用于规范化软件开发工作流
+>
+> 📦 **GitHub 仓库**: https://github.com/devSkills1/claude-prompts
 
 ---
 
@@ -47,7 +49,7 @@ claude-prompts/
 
 ```bash
 # 克隆或进入项目目录
-cd /Users/ryan/Desktop/claude-prompts/
+cd ~/xxx/claude-prompts/
 
 # 运行自动配置脚本
 ./setup.sh
@@ -153,7 +155,7 @@ AI: [输出完整的安全分析和执行方案...]
 
 ```
 源文件位置（Git 管理）:
-/Users/ryan/Desktop/claude-prompts/ryan_ios/
+~/xxx/claude-prompts/ryan_ios/
 
         ↓ 软链接
 
@@ -247,7 +249,7 @@ touch checklist.md
 ### 2. 重新运行配置脚本
 
 ```bash
-cd /Users/ryan/Desktop/claude-prompts/
+cd ~/xxx/claude-prompts/
 ./setup.sh
 ```
 
@@ -370,7 +372,7 @@ rm -rf ~/.claude/
 
 5. **磁盘占用可忽略**
    - 4 个技术栈 × 2 个通用模板 × 平均 8KB ≈ 64KB
-   - 2024 年这点空间完全不是问题
+   - 现代设备上这点空间完全不是问题
 
 ### 如何在多个技术栈间同步改进？
 
@@ -457,8 +459,8 @@ cd ~/Desktop/my-prompts && ./setup.sh
 ls -la ~/.claude/
 
 # 应该看到类似输出：
-# ryan_ios -> /Users/ryan/Desktop/claude-prompts/ryan_ios
-# ryan_flutter -> /Users/ryan/Desktop/claude-prompts/ryan_flutter
+# ryan_ios -> ~/xxx/claude-prompts/ryan_ios
+# ryan_flutter -> ~/xxx/claude-prompts/ryan_flutter
 
 # 测试引用
 cd ~/any-project/
@@ -480,7 +482,7 @@ cd ~/any-project/
 
 - **Claude Code** - https://claude.com/claude-code
 - **Claude API** - https://docs.anthropic.com/
-- **GitHub** - (如有公开仓库，在此添加链接)
+- **GitHub** - https://github.com/devSkills1/claude-prompts.git
 
 ---
 

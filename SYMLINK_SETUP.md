@@ -24,7 +24,7 @@
 
 ```bash
 # 进入项目目录
-cd /Users/ryan/Desktop/claude-prompts/
+cd ~/xxx/claude-prompts/
 
 # 运行自动配置脚本
 ./setup.sh
@@ -57,7 +57,7 @@ mkdir -p ~/.claude/
 
 ```bash
 # 进入这个项目目录
-cd /Users/ryan/Desktop/claude-prompts/
+cd ~/xxx/claude-prompts/
 
 # 创建 ryan_ios 模板的软链接
 ln -s "$(pwd)/ryan_ios" ~/.claude/ryan_ios
@@ -75,7 +75,7 @@ ln -s "$(pwd)/ryan_ios" ~/.claude/ryan_ios
 ls -la ~/.claude/ryan_ios
 
 # 应该看到类似输出：
-# lrwxr-xr-x  1 ryan  staff  40 Dec 24 10:00 /Users/ryan/.claude/ryan_ios -> /Users/ryan/Desktop/claude-prompts/ryan_ios
+# lrwxr-xr-x  1 xxx  staff  40 Dec 24 10:00 /Users/xxx/.claude/ryan_ios -> ~/xxx/claude-prompts/ryan_ios
 
 # 测试能否访问文件
 cat ~/.claude/ryan_ios/README.md
@@ -102,7 +102,7 @@ cd ~/any-project/
 ## 📁 目录结构示意
 
 ```
-/Users/ryan/Desktop/claude-prompts/
+~/xxx/claude-prompts/
 ├── ryan_ios/               ← 源文件（Git 管理）
 ├── ryan_flutter/           ← 源文件（Git 管理）
 ├── ryan_react/             ← 源文件（Git 管理）
@@ -112,10 +112,10 @@ cd ~/any-project/
         软链接 ↓
 
 ~/.claude/
-├── ryan_ios/        → /Users/ryan/Desktop/claude-prompts/ryan_ios/
-├── ryan_flutter/    → /Users/ryan/Desktop/claude-prompts/ryan_flutter/
-├── ryan_react/      → /Users/ryan/Desktop/claude-prompts/ryan_react/
-└── ryan_ts/         → /Users/ryan/Desktop/claude-prompts/ryan_ts/
+├── ryan_ios/        → ~/xxx/claude-prompts/ryan_ios/
+├── ryan_flutter/    → ~/xxx/claude-prompts/ryan_flutter/
+├── ryan_react/      → ~/xxx/claude-prompts/ryan_react/
+└── ryan_ts/         → ~/xxx/claude-prompts/ryan_ts/
 ```
 
 **工作原理：**
@@ -135,12 +135,12 @@ cd ~/any-project/
 
 ```bash
 # 1. 创建新模板目录
-mkdir -p /Users/ryan/Desktop/claude-prompts/ryan_flutter
-mkdir -p /Users/ryan/Desktop/claude-prompts/ryan_react
-mkdir -p /Users/ryan/Desktop/claude-prompts/ryan_ts
+mkdir -p ~/xxx/claude-prompts/ryan_flutter
+mkdir -p ~/xxx/claude-prompts/ryan_react
+mkdir -p ~/xxx/claude-prompts/ryan_ts
 
 # 2. 重新运行配置脚本
-cd /Users/ryan/Desktop/claude-prompts/
+cd ~/xxx/claude-prompts/
 ./setup.sh
 
 # 脚本会自动：
@@ -155,7 +155,7 @@ cd /Users/ryan/Desktop/claude-prompts/
 
 ```bash
 # 假设你创建了 flutter 模板目录
-cd /Users/ryan/Desktop/claude-prompts/
+cd ~/xxx/claude-prompts/
 
 # 创建软链接
 ln -s "$(pwd)/ryan_flutter" ~/.claude/ryan_flutter
@@ -186,7 +186,7 @@ ln -s "$(pwd)/ryan_flutter" ~/.claude/ryan_flutter
 rm ~/.claude/ryan_ios
 
 # 重新创建
-ln -s /Users/ryan/Desktop/claude-prompts/ryan_ios ~/.claude/ryan_ios
+ln -s ~/xxx/claude-prompts/ryan_ios ~/.claude/ryan_ios
 ```
 
 ---
@@ -217,7 +217,7 @@ ls -la ~/.claude/ryan_ios
 # 方法 2: 使用 readlink
 readlink ~/.claude/ryan_ios
 
-# 输出: /Users/ryan/Desktop/claude-prompts/ryan_ios
+# 输出: ~/xxx/claude-prompts/ryan_ios
 ```
 
 ---
@@ -267,7 +267,7 @@ ls ~/.claude/ryan_ios
 
 ```
 1. 在源文件夹中编辑模板
-   /Users/ryan/Desktop/claude-prompts/ryan_ios/
+   ~/xxx/claude-prompts/ryan_ios/
 
 2. Git 提交和推送
    git add ryan_ios/
@@ -287,7 +287,7 @@ ls ~/.claude/ryan_ios
 
 ```bash
 # 一键配置脚本
-cd /Users/ryan/Desktop/claude-prompts/ && \
+cd ~/xxx/claude-prompts/ && \
 mkdir -p ~/.claude/ && \
 ln -sf "$(pwd)/ryan_ios" ~/.claude/ryan_ios && \
 echo "✅ 配置完成！现在可以在任何项目中使用 @ryan_ios/xxx.md"

@@ -23,10 +23,12 @@
 
 ### 1.1 Core Web Vitals
 
+> 注意：自 2024 年 3 月 12 日起，INP 正式替代 FID 成为 Core Web Vitals 指标
+
 **P0 - 必须检查：**
-- [ ] LCP < 2.5s（Largest Contentful Paint）
-- [ ] INP < 200ms（Interaction to Next Paint）
-- [ ] CLS < 0.1（Cumulative Layout Shift）
+- [ ] LCP < 2.5s（Largest Contentful Paint - 最大内容绘制）
+- [ ] INP < 200ms（Interaction to Next Paint - 交互到下一次绘制，已替代 FID）
+- [ ] CLS < 0.1（Cumulative Layout Shift - 累积布局偏移）
 - [ ] 使用 Lighthouse 测试分数 > 90
 
 **检查工具：**
@@ -414,7 +416,8 @@ class ErrorBoundary extends React.Component {
 
 **P1 - 建议检查：**
 - [ ] 组件测试覆盖率 > 70%
-- [ ] 使用 React Testing Library
+- [ ] 使用 React Testing Library（@testing-library/react）
+- [ ] 已迁移 react-test-renderer（React 19 已废弃）到 @testing-library/react
 - [ ] E2E 测试（Playwright/Cypress）
 - [ ] 视觉回归测试
 

@@ -68,7 +68,7 @@ checklist.md → code_execute_step.md（修复问题） → review_and_rollback.
 - 启用 strict 模式
 - 避免使用 any 类型
 - 合理使用泛型
-- 优先使用 type 而非 interface（除非需要声明合并）
+- 根据场景选择 type 或 interface（对象形状建议用 interface，联合类型和工具类型用 type）
 - 使用 const assertions 和 as const
 
 ---
