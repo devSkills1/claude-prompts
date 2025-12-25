@@ -256,7 +256,7 @@ cd /Users/ryan/Desktop/claude-prompts/
 ### 3. 使用新模板
 
 ```bash
-@flutter/plan_state_management.md
+@ryan_flutter/plan_state_management.md
 ```
 
 ---
@@ -381,7 +381,7 @@ rm -rf ~/.claude/
 sed -i '' 's/旧内容/新内容/g' */code_execute_step.md
 
 # 方式 2：diff 对比后手动合并
-diff ios/code_execute_step.md flutter/code_execute_step.md
+diff ryan_ios/code_execute_step.md ryan_flutter/code_execute_step.md
 
 # 方式 3：使用脚本（scripts/sync-improvements.sh）
 ```

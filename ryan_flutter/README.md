@@ -8,11 +8,8 @@ Flutter 项目开发、性能优化、状态管理相关的 Claude prompt 模板
 
 | 文件 | 用途 | 使用场景 |
 |------|------|----------|
-| **USAGE.md** | 📖 使用指南 | **新手必读** - 如何使用这些模板 |
 | **plan_state_management.md** | 状态管理 | Provider/Riverpod/Bloc 方案选型和设计 |
 | **plan_performance.md** | 性能优化 | 卡顿/内存泄漏/渲染问题分析 |
-| **plan_architecture.md** | 架构规划 | 大型 Flutter 应用架构设计 |
-| **plan_platform_channel.md** | 平台通道 | 原生交互/MethodChannel 设计 |
 | **code_execute_step.md** | 执行控制 | 逐步执行修改，防止失控（最重要） |
 | **review_and_rollback.md** | 审查回滚 | 代码审查和回滚策略 |
 | **checklist.md** | 审计清单 | 性能/内存/平台兼容性检查 |
@@ -58,11 +55,6 @@ plan_state_management.md → code_execute_step.md → review_and_rollback.md
 plan_performance.md → checklist.md（验证） → code_execute_step.md → review_and_rollback.md
 ```
 
-**案例 3：原生集成**
-```
-plan_platform_channel.md → code_execute_step.md → review_and_rollback.md
-```
-
 ---
 
 ## 设计原则
@@ -83,17 +75,11 @@ plan_platform_channel.md → code_execute_step.md → review_and_rollback.md
 
 ## 快速开始
 
-### 0. 新手必读
-
-**首次使用？** 请先阅读 `USAGE.md` 了解详细的使用方法和完整案例。
-
 ### 1. 选择模板
 
 根据你的任务类型选择对应的 plan 模板：
 - 状态管理 → `plan_state_management.md`
 - 性能优化 → `plan_performance.md`
-- 架构设计 → `plan_architecture.md`
-- 原生交互 → `plan_platform_channel.md`
 
 ### 2. 填写背景信息
 
@@ -131,14 +117,11 @@ AI 会输出结构化的分析和执行方案。
 ## 文件组织
 
 ```
-flutter/
+ryan_flutter/
 ├── README.md                    # 本文档
-├── USAGE.md                     # 使用指南（新手必读）
 ├── checklist.md                 # 审计检查清单
 ├── plan_state_management.md     # 状态管理方案
 ├── plan_performance.md          # 性能优化
-├── plan_architecture.md         # 架构设计
-├── plan_platform_channel.md     # 平台通道
 ├── code_execute_step.md         # 执行控制（防失控）
 └── review_and_rollback.md       # 审查与回滚
 ```

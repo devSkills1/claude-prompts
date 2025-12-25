@@ -55,7 +55,7 @@
 **步骤：**
 ```bash
 # 直接 @ 引用文件
-@ios/plan_security.md
+@ryan_ios/plan_security.md
 
 帮我分析我们 App 的安全加固方案
 背景：金融 App，已上线，目前只有 ptrace 反调试
@@ -72,19 +72,19 @@ Claude 会自动读取模板内容并按要求输出。
 **步骤：**
 ```
 第 1 轮：
-你：@ios/plan_security.md
+你：@ryan_ios/plan_security.md
     帮我规划越狱检测方案（填写背景信息）
 
 AI：输出完整的安全方案
 
 第 2 轮：
-你：@ios/code_execute_step.md
+你：@ryan_ios/code_execute_step.md
     执行步骤 3.1：实现 Cydia 路径检测
 
 AI：输出具体的代码改动
 
 第 3 轮：
-你：@ios/review_and_rollback.md
+你：@ryan_ios/review_and_rollback.md
     审查刚才的改动
 
 AI：输出审查结果和风险点
@@ -124,7 +124,7 @@ AI：输出审查结果和风险点
 
 **你的输入：**
 ```
-@ios/plan_security.md
+@ryan_ios/plan_security.md
 
 帮我规划越狱检测方案
 
@@ -215,7 +215,7 @@ P1（首版后迭代）：
 
 **你的输入：**
 ```
-@ios/code_execute_step.md
+@ryan_ios/code_execute_step.md
 
 执行 plan_security 中：
 - Plan 文档名：plan_security.md
@@ -280,7 +280,7 @@ P1（首版后迭代）：
 
 **你的输入：**
 ```
-@ios/review_and_rollback.md
+@ryan_ios/review_and_rollback.md
 
 请评审以下修改：
 
@@ -372,7 +372,7 @@ P1（首版后迭代）：
 
 **你的输入：**
 ```
-@ios/checklist.md
+@ryan_ios/checklist.md
 
 对照检查清单，验证刚才的越狱检测实现
 ```
@@ -415,7 +415,7 @@ P1（首版后迭代）：
 
 ```
 1️⃣ Plan 阶段
-@ios/plan_refactor_legacy.md
+@ryan_ios/plan_refactor_legacy.md
 
 【输入信息】
 - 代码文件/方法：LoginViewController.m / -handleLoginResponse:
@@ -425,21 +425,21 @@ P1（首版后迭代）：
 → AI 输出：重构建议、最小改动顺序
 
 2️⃣ Execute 阶段
-@ios/code_execute_step.md
+@ryan_ios/code_execute_step.md
 
 执行步骤 1.1：拆分 handleLoginResponse 方法
 
 → AI 输出：具体的代码改动
 
 3️⃣ Review 阶段
-@ios/review_and_rollback.md
+@ryan_ios/review_and_rollback.md
 
 审查改动
 
 → AI 输出：审查结果、风险点
 
 4️⃣ Audit 阶段
-@ios/checklist.md
+@ryan_ios/checklist.md
 
 对照稳定性检查清单
 
@@ -486,13 +486,13 @@ App 类型：社交（类微信，即时通讯 + 朋友圈）
 
 ❌ 不好的例子：
 ```
-@ios/code_execute_step.md
+@ryan_ios/code_execute_step.md
 执行 plan_security 中所有步骤
 ```
 
 ✅ 好的例子：
 ```
-@ios/code_execute_step.md
+@ryan_ios/code_execute_step.md
 执行步骤 3.1：Cydia 路径检测
 （完成后再执行 3.2）
 ```
@@ -564,8 +564,8 @@ merge 到 main
 ### 技巧 2：组合多个模板
 
 ```
-@ios/plan_security.md
-@ios/plan_performance.md
+@ryan_ios/plan_security.md
+@ryan_ios/plan_performance.md
 
 帮我同时规划：
 1. 越狱检测（安全）

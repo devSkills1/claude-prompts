@@ -135,9 +135,9 @@ cd ~/any-project/
 
 ```bash
 # 1. 创建新模板目录
-mkdir -p /Users/ryan/Desktop/claude-prompts/flutter
-mkdir -p /Users/ryan/Desktop/claude-prompts/react
-mkdir -p /Users/ryan/Desktop/claude-prompts/ts
+mkdir -p /Users/ryan/Desktop/claude-prompts/ryan_flutter
+mkdir -p /Users/ryan/Desktop/claude-prompts/ryan_react
+mkdir -p /Users/ryan/Desktop/claude-prompts/ryan_ts
 
 # 2. 重新运行配置脚本
 cd /Users/ryan/Desktop/claude-prompts/

@@ -85,7 +85,7 @@ plan_architecture.md → code_execute_step.md（分步执行） → review_and_r
 ## 文件组织
 
 ```
-ios/
+ryan_ios/
 ├── README.md                    # 本文档
 ├── USAGE.md                     # 使用指南（新手必读）
 ├── checklist.md                 # 审计检查清单
