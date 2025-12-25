@@ -8,10 +8,7 @@ React 项目开发、性能优化、架构设计相关的 Claude prompt 模板�
 
 | 文件 | 用途 | 使用场景 |
 |------|------|----------|
-| **plan_architecture.md** | 架构规划 | 组件设计/状态管理/路由方案 |
 | **plan_performance.md** | 性能优化 | 渲染优化/包体积/加载速度 |
-| **plan_hooks.md** | Hooks 设计 | 自定义 Hooks/逻辑复用 |
-| **plan_accessibility.md** | 无障碍设计 | a11y/键盘导航/屏幕阅读器 |
 | **code_execute_step.md** | 执行控制 | 逐步执行修改，防止失控（最重要） |
 | **review_and_rollback.md** | 审查回滚 | 代码审查和回滚策略 |
 | **checklist.md** | 审计清单 | 性能/无障碍/SEO/安全检查 |
@@ -47,19 +44,14 @@ React 项目开发、性能优化、架构设计相关的 Claude prompt 模板�
 
 ### 典型使用案例
 
-**案例 1：组件架构设计**
+**案例 1：性能优化**
 ```
-plan_architecture.md → code_execute_step.md → review_and_rollback.md
-```
-
-**案例 2：性能优化**
-```
-plan_performance.md → checklist.md（验证） → code_execute_step.md
+plan_performance.md → code_execute_step.md → review_and_rollback.md
 ```
 
-**案例 3：自定义 Hooks**
+**案例 2：代码质量审计**
 ```
-plan_hooks.md → code_execute_step.md → review_and_rollback.md
+checklist.md → code_execute_step.md（修复问题） → review_and_rollback.md
 ```
 
 ---
@@ -84,15 +76,15 @@ plan_hooks.md → code_execute_step.md → review_and_rollback.md
 
 ### 1. 选择模板
 
-根据你的任务类型选择对应的 plan 模板：
-- 架构设计 → `plan_architecture.md`
+根据你的任务类型选择对应模板：
 - 性能优化 → `plan_performance.md`
-- Hooks 设计 → `plan_hooks.md`
-- 无障碍 → `plan_accessibility.md`
+- 代码执行控制 → `code_execute_step.md`
+- 代码审查 → `review_and_rollback.md`
+- 质量审计 → `checklist.md`
 
 ### 2. 填写背景信息
 
-每个 plan 模板都包含【背景】【目标】【约束】等字段，按实际情况填写。
+plan 模板包含【背景】【目标】【约束】等字段，按实际情况填写。
 
 ### 3. 获取执行计划
 
@@ -116,7 +108,7 @@ AI 会输出结构化的分析和执行方案。
 - 保证可回滚
 
 ⚠️ **checklist.md 用于最终验证**
-- 性能审计（LCP/FID/CLS）
+- 性能审计（LCP/INP/CLS）
 - 无障碍检查（WCAG 2.1）
 - SEO 优化
 - 安全漏洞（XSS/CSRF）
@@ -126,13 +118,10 @@ AI 会输出结构化的分析和执行方案。
 ## 文件组织
 
 ```
-react/
+ryan_react/
 ├── README.md                    # 本文档
 ├── checklist.md                 # 审计检查清单
-├── plan_architecture.md         # 架构设计
 ├── plan_performance.md          # 性能优化
-├── plan_hooks.md                # Hooks 设计
-├── plan_accessibility.md        # 无障碍设计
 ├── code_execute_step.md         # 执行控制（防失控）
 └── review_and_rollback.md       # 审查与回滚
 ```

@@ -138,15 +138,22 @@ type Nullable<T> = T extends object ? { [K in keyof T]: T[K] | null } : T | null
 **1. DeepPartial**
 ```typescript
 // 递归 Partial
-type DeepPartial<T> = {
-  [K in keyof T]?: T[K] extends object ? DeepPartial<T[K]> : T[K];
-};
+type DeepPartial<T> = T extends object
+  ? T extends Array<infer U>
+    ? Array<DeepPartial<U>>
+    : T extends Function
+    ? T
+    : { [K in keyof T]?: DeepPartial<T[K]> }
+  : T;
 ```
 
 **2. RequireAtLeastOne**
 ```typescript
 // 至少需要一个属性
-type RequireAtLeastOne<T, Keys extends keyof T = keyof T> = ...
+type RequireAtLeastOne<T, Keys extends keyof T = keyof T> =
+  Pick<T, Exclude<keyof T, Keys>> & {
+    [K in Keys]-?: Required<Pick<T, K>> & Partial<Pick<T, Exclude<Keys, K>>>
+  }[Keys];
 ```
 
 **3. StrictOmit**

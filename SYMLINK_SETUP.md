@@ -9,7 +9,7 @@
 软链接（Symbolic Link）就像"快捷方式"，让你在一个位置访问另一个位置的文件。
 
 **好处：**
-- ✅ 任何项目都能直接 `@ios/xxx.md` 引用模板
+- ✅ 任何项目都能直接 `@ryan_ios/xxx.md` 引用模板
 - ✅ 修改会同步到源文件（Git 可追踪）
 - ✅ 统一管理，不会有重复副本
 - ✅ 方便团队分享和协作
@@ -20,7 +20,7 @@
 
 ### 方法 1: 自动配置（推荐⭐）
 
-**一键配置所有模板目录（ios、flutter、react、ts 等）**
+**一键配置所有模板目录（ryan_ios、ryan_flutter、ryan_react、ryan_ts 等）**
 
 ```bash
 # 进入项目目录
@@ -32,7 +32,7 @@ cd /Users/ryan/Desktop/claude-prompts/
 
 **脚本会自动:**
 - ✅ 创建 `~/.claude/` 目录（如果不存在）
-- ✅ 扫描所有模板目录（ios、flutter、react 等）
+- ✅ 扫描所有模板目录（ryan_ios、ryan_flutter、ryan_react 等）
 - ✅ 批量创建软链接
 - ✅ 跳过已存在的链接
 - ✅ 显示配置结果
@@ -59,26 +59,26 @@ mkdir -p ~/.claude/
 # 进入这个项目目录
 cd /Users/ryan/Desktop/claude-prompts/
 
-# 创建 ios 模板的软链接
-ln -s "$(pwd)/ios" ~/.claude/ios
+# 创建 ryan_ios 模板的软链接
+ln -s "$(pwd)/ryan_ios" ~/.claude/ryan_ios
 ```
 
 **解释：**
 - `ln -s` - 创建软链接命令
-- `$(pwd)/ios` - 当前目录下的 ios 文件夹的绝对路径
-- `~/.claude/ios` - 目标位置（Claude 全局配置）
+- `$(pwd)/ryan_ios` - 当前目录下的 ryan_ios 文件夹的绝对路径
+- `~/.claude/ryan_ios` - 目标位置（Claude 全局配置）
 
 #### 步骤 3: 验证配置
 
 ```bash
 # 查看软链接是否创建成功
-ls -la ~/.claude/ios
+ls -la ~/.claude/ryan_ios
 
 # 应该看到类似输出：
-# lrwxr-xr-x  1 ryan  staff  40 Dec 24 10:00 /Users/ryan/.claude/ios -> /Users/ryan/Desktop/claude-prompts/ios
+# lrwxr-xr-x  1 ryan  staff  40 Dec 24 10:00 /Users/ryan/.claude/ryan_ios -> /Users/ryan/Desktop/claude-prompts/ryan_ios
 
 # 测试能否访问文件
-cat ~/.claude/ios/README.md
+cat ~/.claude/ryan_ios/README.md
 ```
 
 ---
@@ -92,7 +92,7 @@ cat ~/.claude/ios/README.md
 cd ~/any-project/
 
 # 在 Claude Code 中使用
-@ios/plan_security.md
+@ryan_ios/plan_security.md
 
 # 应该能成功引用模板
 ```
@@ -103,25 +103,25 @@ cd ~/any-project/
 
 ```
 /Users/ryan/Desktop/claude-prompts/
-├── ios/                    ← 源文件（Git 管理）
-├── flutter/                ← 源文件（Git 管理）
-├── react/                  ← 源文件（Git 管理）
-├── ts/                     ← 源文件（Git 管理）
+├── ryan_ios/               ← 源文件（Git 管理）
+├── ryan_flutter/           ← 源文件（Git 管理）
+├── ryan_react/             ← 源文件（Git 管理）
+├── ryan_ts/                ← 源文件（Git 管理）
 └── setup.sh                ← 自动配置脚本
 
         软链接 ↓
 
 ~/.claude/
-├── ios/        → /Users/ryan/Desktop/claude-prompts/ios/
-├── flutter/    → /Users/ryan/Desktop/claude-prompts/flutter/
-├── react/      → /Users/ryan/Desktop/claude-prompts/react/
-└── ts/         → /Users/ryan/Desktop/claude-prompts/ts/
+├── ryan_ios/        → /Users/ryan/Desktop/claude-prompts/ryan_ios/
+├── ryan_flutter/    → /Users/ryan/Desktop/claude-prompts/ryan_flutter/
+├── ryan_react/      → /Users/ryan/Desktop/claude-prompts/ryan_react/
+└── ryan_ts/         → /Users/ryan/Desktop/claude-prompts/ryan_ts/
 ```
 
 **工作原理：**
-1. 你在项目文件夹中编辑 `claude-prompts/ios/xxx.md`
+1. 你在项目文件夹中编辑 `claude-prompts/ryan_ios/xxx.md`
 2. Git 可以追踪这些修改
-3. 任何项目都通过 `@ios/xxx.md` 访问
+3. 任何项目都通过 `@ryan_ios/xxx.md` 访问
 4. 实际读取的是源文件，修改会同步
 5. 所有模板目录全局可用
 
@@ -158,10 +158,10 @@ cd /Users/ryan/Desktop/claude-prompts/
 cd /Users/ryan/Desktop/claude-prompts/
 
 # 创建软链接
-ln -s "$(pwd)/flutter" ~/.claude/flutter
+ln -s "$(pwd)/ryan_flutter" ~/.claude/ryan_flutter
 
 # 使用
-@flutter/plan_xxx.md
+@ryan_flutter/plan_xxx.md
 ```
 
 ---
@@ -183,10 +183,10 @@ ln -s "$(pwd)/flutter" ~/.claude/flutter
 
 ```bash
 # 删除软链接（源文件不受影响）
-rm ~/.claude/ios
+rm ~/.claude/ryan_ios
 
 # 重新创建
-ln -s /Users/ryan/Desktop/claude-prompts/ios ~/.claude/ios
+ln -s /Users/ryan/Desktop/claude-prompts/ryan_ios ~/.claude/ryan_ios
 ```
 
 ---
@@ -197,13 +197,13 @@ ln -s /Users/ryan/Desktop/claude-prompts/ios ~/.claude/ios
 
 ```bash
 # 删除旧链接
-rm ~/.claude/ios
+rm ~/.claude/ryan_ios
 
 # 进入新位置
 cd /path/to/new/location/claude-prompts/
 
 # 重新创建链接
-ln -s "$(pwd)/ios" ~/.claude/ios
+ln -s "$(pwd)/ryan_ios" ~/.claude/ryan_ios
 ```
 
 ---
@@ -212,12 +212,12 @@ ln -s "$(pwd)/ios" ~/.claude/ios
 
 ```bash
 # 方法 1: 使用 ls -la
-ls -la ~/.claude/ios
+ls -la ~/.claude/ryan_ios
 
 # 方法 2: 使用 readlink
-readlink ~/.claude/ios
+readlink ~/.claude/ryan_ios
 
-# 输出: /Users/ryan/Desktop/claude-prompts/ios
+# 输出: /Users/ryan/Desktop/claude-prompts/ryan_ios
 ```
 
 ---
@@ -231,14 +231,14 @@ git clone <your-repo-url> ~/claude-prompts
 
 # 创建软链接
 cd ~/claude-prompts
-ln -s "$(pwd)/ios" ~/.claude/ios
+ln -s "$(pwd)/ryan_ios" ~/.claude/ryan_ios
 ```
 
 **方式 2: 提供配置脚本**
 ```bash
 # 在项目根目录创建 setup.sh
 #!/bin/bash
-ln -s "$(pwd)/ios" ~/.claude/ios
+ln -s "$(pwd)/ryan_ios" ~/.claude/ryan_ios
 echo "✅ 软链接创建成功"
 
 # 使用
@@ -254,10 +254,10 @@ chmod +x setup.sh
 
 ```bash
 # 仅删除软链接（源文件不受影响）
-rm ~/.claude/ios
+rm ~/.claude/ryan_ios
 
 # 验证删除成功
-ls ~/.claude/ios
+ls ~/.claude/ryan_ios
 # 输出: No such file or directory
 ```
 
@@ -267,17 +267,17 @@ ls ~/.claude/ios
 
 ```
 1. 在源文件夹中编辑模板
-   /Users/ryan/Desktop/claude-prompts/ios/
+   /Users/ryan/Desktop/claude-prompts/ryan_ios/
 
 2. Git 提交和推送
-   git add ios/
+   git add ryan_ios/
    git commit -m "更新安全检测模板"
    git push
 
 3. 团队其他成员拉取
    git pull
 
-4. 所有人的 @ios/xxx.md 自动使用最新版本
+4. 所有人的 @ryan_ios/xxx.md 自动使用最新版本
    （因为软链接指向源文件）
 ```
 
@@ -289,8 +289,8 @@ ls ~/.claude/ios
 # 一键配置脚本
 cd /Users/ryan/Desktop/claude-prompts/ && \
 mkdir -p ~/.claude/ && \
-ln -sf "$(pwd)/ios" ~/.claude/ios && \
-echo "✅ 配置完成！现在可以在任何项目中使用 @ios/xxx.md"
+ln -sf "$(pwd)/ryan_ios" ~/.claude/ryan_ios && \
+echo "✅ 配置完成！现在可以在任何项目中使用 @ryan_ios/xxx.md"
 ```
 
 **说明：**
@@ -301,8 +301,8 @@ echo "✅ 配置完成！现在可以在任何项目中使用 @ios/xxx.md"
 
 ## 📚 相关资源
 
-- **ios/README.md** - iOS 模板使用说明
-- **ios/USAGE.md** - 详细使用指南和案例
+- **ryan_ios/README.md** - iOS 模板使用说明
+- **ryan_ios/USAGE.md** - 详细使用指南和案例
 - **Claude Code 文档** - https://claude.com/claude-code
 
 ---
@@ -316,13 +316,13 @@ echo "✅ 配置完成！现在可以在任何项目中使用 @ios/xxx.md"
 cd ~/Desktop/
 
 # ✅ 能看到软链接
-ls -la ~/.claude/ios
+ls -la ~/.claude/ryan_ios
 
 # ✅ 能读取文件
-cat ~/.claude/ios/README.md
+cat ~/.claude/ryan_ios/README.md
 
 # ✅ 在 Claude Code 中能引用
-@ios/plan_security.md
+@ryan_ios/plan_security.md
 ```
 
 ---

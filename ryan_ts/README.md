@@ -9,8 +9,6 @@ TypeScript 项目开发、类型系统设计、重构相关的 Claude prompt 模
 | 文件 | 用途 | 使用场景 |
 |------|------|----------|
 | **plan_types.md** | 类型系统设计 | 类型定义/泛型设计/类型推导优化 |
-| **plan_migration.md** | JS 迁移 TS | JavaScript 项目迁移到 TypeScript |
-| **plan_refactor.md** | 代码重构 | 类型安全重构/消除 any |
 | **code_execute_step.md** | 执行控制 | 逐步执行修改，防止失控（最重要） |
 | **review_and_rollback.md** | 审查回滚 | 代码审查和回滚策略 |
 | **checklist.md** | 审计清单 | 类型安全/性能/可维护性检查 |
@@ -46,19 +44,14 @@ TypeScript 项目开发、类型系统设计、重构相关的 Claude prompt 模
 
 ### 典型使用案例
 
-**案例 1：JavaScript 迁移到 TypeScript**
-```
-plan_migration.md → code_execute_step.md → checklist.md
-```
-
-**案例 2：类型系统设计**
+**案例 1：类型系统设计**
 ```
 plan_types.md → code_execute_step.md → review_and_rollback.md
 ```
 
-**案例 3：消除 any 类型**
+**案例 2：类型安全审计**
 ```
-plan_refactor.md → code_execute_step.md → checklist.md
+checklist.md → code_execute_step.md（修复问题） → review_and_rollback.md
 ```
 
 ---
@@ -84,14 +77,15 @@ plan_refactor.md → code_execute_step.md → checklist.md
 
 ### 1. 选择模板
 
-根据你的任务类型选择对应的 plan 模板：
+根据你的任务类型选择对应模板：
 - 类型设计 → `plan_types.md`
-- JS 迁移 → `plan_migration.md`
-- 代码重构 → `plan_refactor.md`
+- 代码执行控制 → `code_execute_step.md`
+- 代码审查 → `review_and_rollback.md`
+- 质量审计 → `checklist.md`
 
 ### 2. 填写背景信息
 
-每个 plan 模板都包含【背景】【目标】【约束】等字段，按实际情况填写。
+plan 模板包含【背景】【目标】【约束】等字段，按实际情况填写。
 
 ### 3. 获取执行计划
 
@@ -134,12 +128,10 @@ AI 会输出结构化的分析和执行方案。
 ## 文件组织
 
 ```
-typescript/
+ryan_ts/
 ├── README.md                    # 本文档
 ├── checklist.md                 # 审计检查清单
 ├── plan_types.md                # 类型系统设计
-├── plan_migration.md            # JS 迁移 TS
-├── plan_refactor.md             # 代码重构
 ├── code_execute_step.md         # 执行控制（防失控）
 └── review_and_rollback.md       # 审查与回滚
 ```

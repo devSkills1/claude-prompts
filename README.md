@@ -20,7 +20,7 @@
 
 ```
 claude-prompts/
-├── ios/                    # iOS 开发模板（Objective-C / Swift）
+├── ryan_ios/               # iOS 开发模板（Objective-C / Swift）
 │   ├── README.md          # iOS 模板说明
 │   ├── USAGE.md           # 详细使用指南
 │   ├── plan_security.md   # 安全加固规划
@@ -28,9 +28,9 @@ claude-prompts/
 │   ├── checklist.md       # 审计检查清单
 │   └── ...
 │
-├── flutter/                # Flutter 开发模板（待创建）
-├── react/                  # React 开发模板（待创建）
-├── ts/                     # TypeScript 开发模板（待创建）
+├── ryan_flutter/           # Flutter 开发模板
+├── ryan_react/             # React 开发模板
+├── ryan_ts/                # TypeScript 开发模板
 │
 ├── setup.sh                # 自动配置脚本
 ├── SYMLINK_SETUP.md        # 软链接配置指南
@@ -55,7 +55,7 @@ cd /Users/ryan/Desktop/claude-prompts/
 
 **脚本会自动：**
 - ✅ 创建 `~/.claude/` 目录
-- ✅ 扫描所有模板目录（ios、flutter、react 等）
+- ✅ 扫描所有模板目录（ryan_ios、ryan_flutter、ryan_react 等）
 - ✅ 批量创建软链接
 - ✅ 显示配置结果
 
@@ -70,15 +70,15 @@ cd /Users/ryan/Desktop/claude-prompts/
 cd ~/your-project/
 
 # 在 Claude Code 中使用
-@ios/plan_security.md
-@ios/checklist.md
-@flutter/xxx.md       # 创建后可用
-@react/xxx.md         # 创建后可用
+@ryan_ios/plan_security.md
+@ryan_ios/checklist.md
+@ryan_flutter/xxx.md
+@ryan_react/xxx.md
 ```
 
 **示例对话：**
 ```
-你: @ios/plan_security.md
+你: @ryan_ios/plan_security.md
     帮我规划越狱检测方案
 
     背景：金融 App，已上线，目前只有 ptrace 反调试
@@ -103,31 +103,47 @@ AI: [输出完整的安全分析和执行方案...]
 | `review_and_rollback.md` | 审查回滚 | 代码审查和回滚策略 |
 | `checklist.md` | 审计清单 | 安全/性能/稳定性/审核风险检查 |
 
-**详细说明：** 查看 [`ios/README.md`](ios/README.md) 和 [`ios/USAGE.md`](ios/USAGE.md)
+**详细说明：** 查看 [`ryan_ios/README.md`](ryan_ios/README.md) 和 [`ryan_ios/USAGE.md`](ryan_ios/USAGE.md)
 
 ---
 
-### Flutter 开发模板（规划中）
+### Flutter 开发模板
 
-- [ ] `plan_state_management.md` - 状态管理方案设计
-- [ ] `plan_performance.md` - Flutter 性能优化
-- [ ] `checklist.md` - 发布前检查清单
+| 模板 | 用途 | 使用场景 |
+|------|------|---------|
+| `plan_state_management.md` | 状态管理 | Provider/Riverpod/Bloc 方案设计 |
+| `plan_performance.md` | 性能优化 | Flutter 渲染优化/内存优化 |
+| `code_execute_step.md` | 执行控制 | 逐步执行修改，防止失控 |
+| `review_and_rollback.md` | 审查回滚 | 代码审查和回滚策略 |
+| `checklist.md` | 审计清单 | 发布前检查清单 |
 
----
-
-### React 开发模板（规划中）
-
-- [ ] `plan_architecture.md` - React 架构设计
-- [ ] `plan_performance.md` - 性能优化（虚拟列表、懒加载等）
-- [ ] `checklist.md` - 代码审查清单
+**详细说明：** 查看 [`ryan_flutter/README.md`](ryan_flutter/README.md)
 
 ---
 
-### TypeScript 开发模板（规划中）
+### React 开发模板
 
-- [ ] `plan_types.md` - 类型系统设计
-- [ ] `plan_refactor.md` - JS 迁移到 TS
-- [ ] `checklist.md` - 类型安全检查清单
+| 模板 | 用途 | 使用场景 |
+|------|------|---------|
+| `plan_performance.md` | 性能优化 | 渲染优化/虚拟列表/懒加载 |
+| `code_execute_step.md` | 执行控制 | 逐步执行修改，防止失控 |
+| `review_and_rollback.md` | 审查回滚 | 代码审查和回滚策略 |
+| `checklist.md` | 审计清单 | 性能/无障碍/SEO/安全检查 |
+
+**详细说明：** 查看 [`ryan_react/README.md`](ryan_react/README.md)
+
+---
+
+### TypeScript 开发模板
+
+| 模板 | 用途 | 使用场景 |
+|------|------|---------|
+| `plan_types.md` | 类型系统设计 | 类型定义/泛型设计/类型推导 |
+| `code_execute_step.md` | 执行控制 | 逐步执行修改，防止失控 |
+| `review_and_rollback.md` | 审查回滚 | 代码审查和回滚策略 |
+| `checklist.md` | 审计清单 | 类型安全/性能/可维护性检查 |
+
+**详细说明：** 查看 [`ryan_ts/README.md`](ryan_ts/README.md)
 
 ---
 
@@ -137,16 +153,16 @@ AI: [输出完整的安全分析和执行方案...]
 
 ```
 源文件位置（Git 管理）:
-/Users/ryan/Desktop/claude-prompts/ios/
+/Users/ryan/Desktop/claude-prompts/ryan_ios/
 
         ↓ 软链接
 
 全局访问位置:
-~/.claude/ios/
+~/.claude/ryan_ios/
 ```
 
 **优点：**
-- ✅ 任何项目都能直接 `@ios/xxx.md` 引用
+- ✅ 任何项目都能直接 `@ryan_ios/xxx.md` 引用
 - ✅ 修改会同步到源文件（Git 可追踪）
 - ✅ 统一管理，不会有重复副本
 - ✅ 方便团队分享和协作
@@ -181,17 +197,17 @@ AI: [输出完整的安全分析和执行方案...]
 
 **案例 1：实现越狱检测**
 ```
-@ios/plan_security.md        → 规划方案
-@ios/code_execute_step.md    → 逐步实施
-@ios/review_and_rollback.md  → 审查改动
-@ios/checklist.md            → 最终审计
+@ryan_ios/plan_security.md        → 规划方案
+@ryan_ios/code_execute_step.md    → 逐步实施
+@ryan_ios/review_and_rollback.md  → 审查改动
+@ryan_ios/checklist.md            → 最终审计
 ```
 
 **案例 2：性能优化**
 ```
-@ios/plan_performance.md     → 分析瓶颈
-@ios/code_execute_step.md    → 优化实施
-@ios/review_and_rollback.md  → 验证效果
+@ryan_ios/plan_performance.md     → 分析瓶颈
+@ryan_ios/code_execute_step.md    → 优化实施
+@ryan_ios/review_and_rollback.md  → 验证效果
 ```
 
 ---
@@ -262,7 +278,7 @@ cd /Users/ryan/Desktop/claude-prompts/
 
 3. **开始使用**
    ```bash
-   @ios/xxx.md
+   @ryan_ios/xxx.md
    ```
 
 ### 更新模板
@@ -271,7 +287,7 @@ cd /Users/ryan/Desktop/claude-prompts/
 # 拉取最新模板
 git pull
 
-# 所有人的 @ios/xxx.md 自动使用最新版本
+# 所有人的 @ryan_ios/xxx.md 自动使用最新版本
 # （因为软链接指向源文件）
 ```
 
@@ -281,10 +297,10 @@ git pull
 
 ```bash
 # 删除所有软链接（源文件不受影响）
-rm ~/.claude/ios
-rm ~/.claude/flutter
-rm ~/.claude/react
-rm ~/.claude/ts
+rm ~/.claude/ryan_ios
+rm ~/.claude/ryan_flutter
+rm ~/.claude/ryan_react
+rm ~/.claude/ryan_ts
 
 # 或者删除整个 .claude 目录
 rm -rf ~/.claude/
@@ -295,8 +311,8 @@ rm -rf ~/.claude/
 ## 📚 相关文档
 
 - **[SYMLINK_SETUP.md](SYMLINK_SETUP.md)** - 软链接配置详细指南
-- **[ios/README.md](ios/README.md)** - iOS 模板说明
-- **[ios/USAGE.md](ios/USAGE.md)** - iOS 模板使用指南和案例
+- **[ryan_ios/README.md](ryan_ios/README.md)** - iOS 模板说明
+- **[ryan_ios/USAGE.md](ryan_ios/USAGE.md)** - iOS 模板使用指南和案例
 - **[Claude Code 官方文档](https://claude.com/claude-code)** - Claude Code 使用文档
 
 ---
@@ -323,13 +339,13 @@ rm -rf ~/.claude/
 1. **用户体验优先**
    ```bash
    # 一个前缀搞定所有
-   @ios/plan_security.md
-   @ios/code_execute_step.md
-   @ios/checklist.md
+   @ryan_ios/plan_security.md
+   @ryan_ios/code_execute_step.md
+   @ryan_ios/checklist.md
 
    # 而非混合引用
    @common/code_execute_step.md
-   @ios/plan_security.md
+   @ryan_ios/plan_security.md
    ```
 
 2. **内容本就不同**
@@ -339,11 +355,11 @@ rm -rf ~/.claude/
 
 3. **自动补全完美**
    ```bash
-   输入: @ios/<Tab>
+   输入: @ryan_ios/<Tab>
    显示: 所有 iOS 可用模板（包括 code_execute_step.md）
 
    # common/ 方案会导致：
-   输入: @ios/<Tab>
+   输入: @ryan_ios/<Tab>
    显示: 只有 plan_*.md，看不到 code_execute_step.md
    ```
 
@@ -398,10 +414,10 @@ diff ios/code_execute_step.md flutter/code_execute_step.md
 
 不是必须的，你也可以直接在项目中使用：
 ```bash
-@/path/to/claude-prompts/ios/plan_security.md
+@/path/to/claude-prompts/ryan_ios/plan_security.md
 ```
 
-但软链接更方便，任何项目都能用 `@ios/xxx.md`。
+但软链接更方便，任何项目都能用 `@ryan_ios/xxx.md`。
 
 ---
 
@@ -410,11 +426,11 @@ diff ios/code_execute_step.md flutter/code_execute_step.md
 在对应的技术栈目录下添加 `.md` 文件即可：
 ```bash
 # 添加自定义 iOS 模板
-cd ios/
+cd ryan_ios/
 touch plan_custom.md
 
 # 使用
-@ios/plan_custom.md
+@ryan_ios/plan_custom.md
 ```
 
 ---
@@ -431,7 +447,7 @@ cd ~/claude-prompts && ./setup.sh
 git clone ... ~/Desktop/my-prompts
 cd ~/Desktop/my-prompts && ./setup.sh
 
-# 都能使用 @ios/xxx.md（软链接统一指向 ~/.claude/ios）
+# 都能使用 @ryan_ios/xxx.md（软链接统一指向 ~/.claude/ryan_ios）
 ```
 
 ---
@@ -443,22 +459,22 @@ cd ~/Desktop/my-prompts && ./setup.sh
 ls -la ~/.claude/
 
 # 应该看到类似输出：
-# ios -> /Users/ryan/Desktop/claude-prompts/ios
-# flutter -> /Users/ryan/Desktop/claude-prompts/flutter
+# ryan_ios -> /Users/ryan/Desktop/claude-prompts/ryan_ios
+# ryan_flutter -> /Users/ryan/Desktop/claude-prompts/ryan_flutter
 
 # 测试引用
 cd ~/any-project/
-# 在 Claude Code 中输入 @ios/ 按 Tab，应该能看到自动补全
+# 在 Claude Code 中输入 @ryan_ios/ 按 Tab，应该能看到自动补全
 ```
 
 ---
 
 ## 📊 项目状态
 
-- ✅ **iOS 模板** - 已完成，包含 8 个核心模板
-- 🚧 **Flutter 模板** - 规划中
-- 🚧 **React 模板** - 规划中
-- 🚧 **TypeScript 模板** - 规划中
+- ✅ **iOS 模板** - 已完成，包含 10 个核心模板
+- ✅ **Flutter 模板** - 已完成，包含 6 个核心模板
+- ✅ **React 模板** - 已完成，包含 5 个核心模板
+- ✅ **TypeScript 模板** - 已完成，包含 5 个核心模板
 
 ---
 
@@ -491,7 +507,7 @@ MIT License（或根据实际情况修改）
 ./setup.sh
 
 # 2. 使用
-@ios/plan_security.md
+@ryan_ios/plan_security.md
 
 # 3. 享受高效的 AI 协作开发！
 ```

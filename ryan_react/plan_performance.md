@@ -36,7 +36,7 @@
 ### 性能指标
 - **当前表现：**
   - LCP (Largest Contentful Paint)：XXX ms（目标 < 2.5s）
-  - FID (First Input Delay)：XXX ms（目标 < 100ms）
+  - INP (Interaction to Next Paint)：XXX ms（目标 < 200ms）
   - CLS (Cumulative Layout Shift)：XXX（目标 < 0.1）
   - 包体积：XXX KB
   - 首屏时间：XXX ms
@@ -65,7 +65,7 @@
   - 问题原因：（大图片/慢API/阻塞资源）
   - 优化空间：
 
-- FID 问题：
+- INP 问题：
   - 当前值：XXX ms
   - 问题原因：（长任务/主线程阻塞）
   - 优化空间：
@@ -188,7 +188,7 @@ const ExpensiveComponent = React.memo(({ data }) => {
 
 // 2. 使用 useMemo 缓存计算结果
 const sortedData = useMemo(
-  () => data.sort((a, b) => a - b),
+  () => [...data].sort((a, b) => a - b),
   [data]
 );
 
@@ -295,7 +295,7 @@ useEffect(() => {
 - Lighthouse CI
 
 **监控指标：**
-- Core Web Vitals（LCP/FID/CLS）
+- Core Web Vitals（LCP/INP/CLS）
 - 自定义性能指标
 - 错误监控
 - 用户行为追踪
@@ -303,11 +303,11 @@ useEffect(() => {
 **持续监控方案：**
 ```typescript
 // Web Vitals 监控
-import { getCLS, getFID, getLCP } from 'web-vitals';
+import { onCLS, onINP, onLCP } from 'web-vitals';
 
-getCLS(console.log);
-getFID(console.log);
-getLCP(console.log);
+onCLS(console.log);
+onINP(console.log);
+onLCP(console.log);
 ```
 
 ---
@@ -360,7 +360,7 @@ getLCP(console.log);
 | 指标 | 优化前 | 优化后 | 提升 |
 |------|--------|--------|------|
 | LCP | 4.5s | 2.0s | 55% ↓ |
-| FID | 200ms | 80ms | 60% ↓ |
+| INP | 200ms | 80ms | 60% ↓ |
 | 包体积 | 800KB | 400KB | 50% ↓ |
 | 首屏时间 | 5s | 2s | 60% ↓ |
 

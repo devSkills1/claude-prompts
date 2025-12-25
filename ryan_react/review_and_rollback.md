@@ -108,7 +108,7 @@
 | 指标 | 优化前 | 优化后 | 变化 |
 |------|--------|--------|------|
 | LCP | X.Xs | X.Xs | ±X% |
-| FID | XXms | XXms | ±X% |
+| INP | XXms | XXms | ±X% |
 | CLS | X.XX | X.XX | ±X% |
 
 ---

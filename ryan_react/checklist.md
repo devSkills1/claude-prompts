@@ -25,7 +25,7 @@
 
 **P0 - 必须检查：**
 - [ ] LCP < 2.5s（Largest Contentful Paint）
-- [ ] FID < 100ms（First Input Delay）
+- [ ] INP < 200ms（Interaction to Next Paint）
 - [ ] CLS < 0.1（Cumulative Layout Shift）
 - [ ] 使用 Lighthouse 测试分数 > 90
 
@@ -279,9 +279,17 @@ yarn audit
 
 ```tsx
 class ErrorBoundary extends React.Component {
-  componentDidCatch(error, errorInfo) {
-    // 记录错误
+  state = { hasError: false };
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true };
   }
+
+  componentDidCatch(error, errorInfo) {
+    // 记录错误到监控服务
+    console.error('Error caught:', error, errorInfo);
+  }
+
   render() {
     if (this.state.hasError) {
       return <ErrorFallback />;
@@ -366,7 +374,7 @@ class ErrorBoundary extends React.Component {
 | 指标 | 值 | 状态 |
 |------|-----|------|
 | LCP | X.Xs | ✅/❌ |
-| FID | XXms | ✅/❌ |
+| INP | XXms | ✅/❌ |
 | CLS | X.XX | ✅/❌ |
 
 **阻断问题：**
