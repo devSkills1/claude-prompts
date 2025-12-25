@@ -163,11 +163,11 @@ vite-bundle-visualizer
 **常见废弃 API 替换示例：**
 
 ```tsx
-// ❌ 废弃：React.FC（不推荐使用）
+// ⚠️ 不推荐：React.FC（React 18 移除隐式 children）
 const MyComponent: React.FC<Props> = ({ children }) => { }
 
 // ✅ 推荐：直接类型标注 props
-const MyComponent = ({ children }: Props) => { }
+const MyComponent = ({ children }: Props & { children?: ReactNode }) => { }
 
 // ❌ 废弃：componentWillMount / componentWillReceiveProps / componentWillUpdate
 class MyComponent extends React.Component {
@@ -196,6 +196,27 @@ const node = ReactDOM.findDOMNode(this);
 const ref = useRef<HTMLDivElement>(null);
 <div ref={ref} />
 ```
+
+**React 版本兼容性对照表：**
+
+| API | 废弃版本 | 移除版本 | 替代方案 |
+|-----|---------|---------|---------|
+| React.FC 隐式 children | React 18 | - | 显式声明 children 类型 |
+| componentWillMount | React 16.3 | React 17 | useEffect(() => {}, []) |
+| componentWillReceiveProps | React 16.3 | React 17 | useEffect(() => {}, [props]) |
+| componentWillUpdate | React 16.3 | React 17 | useEffect(() => {}) |
+| ReactDOM.render | React 18 | React 19 | createRoot(el).render() |
+| findDOMNode | React 16.3 | - | useRef() |
+| Legacy Context (contextTypes) | React 16.3 | React 19 | createContext() |
+| defaultProps (函数组件) | React 18.3 | React 19 | 直接使用默认参数 |
+| propTypes | React 15.5 | - | TypeScript / 运行时验证库 |
+
+**React 19 新特性：**
+- ✅ Actions (`useActionState`, `useFormStatus`)
+- ✅ `use()` Hook（读取 Promise/Context）
+- ✅ `ref` 作为 props（无需 `forwardRef`）
+- ✅ `useOptimistic` Hook
+- ✅ React Compiler（自动 memo）
 
 ---
 

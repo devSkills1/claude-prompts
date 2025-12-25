@@ -151,6 +151,84 @@ src/
 
 ---
 
+### 2.4 API 使用规范
+
+**P0 - 必须检查：**
+- [ ] **是否使用已废弃 (deprecated) 的 API**
+  - 检查 TypeScript 编译警告中的 deprecated 提示
+  - 必须替换为官方推荐的新 API
+  - 使用 ESLint 规则 `deprecation/deprecation` 检测
+- [ ] 第三方库是否使用已废弃的 API
+- [ ] 自定义代码使用 @deprecated 标记废弃功能
+
+**P1 - 建议检查：**
+- [ ] 定期检查依赖库的 CHANGELOG 和 Breaking Changes
+- [ ] 使用 TypeScript 最新稳定版本的新特性
+
+**废弃 API 检测工具：**
+
+```bash
+# 安装 ESLint 废弃检测插件
+npm install -D eslint-plugin-deprecation
+
+# .eslintrc.json 配置
+{
+  "plugins": ["deprecation"],
+  "rules": {
+    "deprecation/deprecation": "error"
+  }
+}
+
+# 运行检测
+npm run lint
+```
+
+**使用 @deprecated 标记示例：**
+
+```typescript
+/**
+ * @deprecated 使用 getUserById() 替代，将在 v3.0 移除
+ */
+function getUser(id: string): User {
+  return getUserById(id);
+}
+
+/**
+ * 推荐的新 API
+ */
+function getUserById(id: string): User {
+  // ...
+}
+```
+
+**常见废弃场景：**
+
+```typescript
+// ❌ 使用了标记为 @deprecated 的 API
+import { oldFunction } from 'some-lib';
+oldFunction();  // TypeScript 会显示删除线警告
+
+// ✅ 使用推荐的新 API
+import { newFunction } from 'some-lib';
+newFunction();
+
+// ❌ TypeScript 5.0 之前的 enum 语法问题
+enum Color {
+  Red = 1,
+  Green = 2
+}
+// 可能产生 const enum 相关警告
+
+// ✅ 使用 union types 或 const assertion
+const Color = {
+  Red: 1,
+  Green: 2
+} as const;
+type Color = typeof Color[keyof typeof Color];
+```
+
+---
+
 ## 3. 性能检查
 
 ### 3.1 编译性能

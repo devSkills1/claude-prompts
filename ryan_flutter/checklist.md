@@ -138,13 +138,13 @@ adb logcat | grep "ActivityManager"
 - [ ] **是否使用已废弃 (deprecated) 的 API**
   - 检查 Dart Analysis Warnings 中的 deprecated 提示
   - 必须替换为官方推荐的新 API
-  - 使用 `flutter doctor` 检查 SDK 版本兼容性
+  - 使用 `flutter analyze` 或 `dart analyze` 检查废弃 API
 - [ ] 是否使用了未来版本才支持的 API（检查 pubspec.yaml SDK 约束）
 - [ ] 第三方包是否使用最新稳定版本
 
 **P1 - 建议检查：**
 - [ ] 是否有更现代的替代 API（如 Navigator 2.0）
-- [ ] 是否遵循 Dart 3.x null safety 规范
+- [ ] 是否正确使用 Dart 空安全（Dart 3.0+ 强制启用）
 
 **常见废弃 API 替换示例：**
 
@@ -162,6 +162,31 @@ FlatButton(onPressed: () {}, child: Text('按钮'))
 
 // ✅ 推荐：TextButton / ElevatedButton
 TextButton(onPressed: () {}, child: Text('按钮'))
+
+// ❌ 废弃：OutlineButton
+OutlineButton(onPressed: () {}, child: Text('按钮'))
+
+// ✅ 推荐：OutlinedButton
+OutlinedButton(onPressed: () {}, child: Text('按钮'))
+
+// ❌ 废弃：WillPopScope (Flutter 3.12+)
+WillPopScope(
+  onWillPop: () async => true,
+  child: child,
+)
+
+// ✅ 推荐：PopScope
+PopScope(
+  canPop: true,
+  onPopInvokedWithResult: (didPop, result) { },
+  child: child,
+)
+
+// ❌ 废弃：Theme accentColor (Flutter 2.3+)
+Theme.of(context).accentColor
+
+// ✅ 推荐：colorScheme.secondary
+Theme.of(context).colorScheme.secondary
 ```
 
 ---
