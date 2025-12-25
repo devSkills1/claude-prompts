@@ -29,6 +29,12 @@
 - [ ] Method Swizzle 影响
 - [ ] Associated Objects 使用
 
+【Swift 混编兼容性检查】（如适用）
+- [ ] 是否需要更新 Bridging Header
+- [ ] 公开 API 是否添加 nullability 注解（nullable/nonnull）
+- [ ] 是否使用 NS_SWIFT_NAME 优化 Swift 调用体验
+- [ ] 枚举是否使用 NS_ENUM/NS_OPTIONS（Swift 兼容）
+
 【请输出】
 1. 当前代码问题点列表（圈复杂度、命名、重复逻辑）
 2. 方法级重构建议（拆分方法、提取常量、简化条件）

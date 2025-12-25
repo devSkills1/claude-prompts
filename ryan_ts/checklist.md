@@ -169,10 +169,14 @@ src/
 
 ```bash
 # 安装 ESLint 废弃检测插件
-npm install -D eslint-plugin-deprecation
+npm install -D eslint-plugin-deprecation @typescript-eslint/parser
 
 # .eslintrc.json 配置
 {
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
   "plugins": ["deprecation"],
   "rules": {
     "deprecation/deprecation": "error"
@@ -211,21 +215,13 @@ oldFunction();  // TypeScript 会显示删除线警告
 // ✅ 使用推荐的新 API
 import { newFunction } from 'some-lib';
 newFunction();
-
-// ❌ TypeScript 5.0 之前的 enum 语法问题
-enum Color {
-  Red = 1,
-  Green = 2
-}
-// 可能产生 const enum 相关警告
-
-// ✅ 使用 union types 或 const assertion
-const Color = {
-  Red: 1,
-  Green: 2
-} as const;
-type Color = typeof Color[keyof typeof Color];
 ```
+
+**TypeScript 原生 @deprecated 支持：**
+- TypeScript 4.0+ 原生支持 @deprecated JSDoc 标签
+- IDE 会显示删除线（strikethrough）提示
+- 编译器本身不会报错，只有 IDE 和 ESLint 插件会提示
+- 无需额外配置即可在 tsconfig.json 中使用
 
 ---
 
@@ -467,7 +463,7 @@ async function getUser(userId: string): Promise<User | null> { }
 ### 9.2 版本兼容
 
 **P0 - 必须检查：**
-- [ ] TypeScript 版本 >= 4.5
+- [ ] TypeScript 版本 >= 5.0
 - [ ] 使用的特性在目标版本支持
 - [ ] target 配置合理
 

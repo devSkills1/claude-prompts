@@ -169,16 +169,19 @@ OutlineButton(onPressed: () {}, child: Text('按钮'))
 // ✅ 推荐：OutlinedButton
 OutlinedButton(onPressed: () {}, child: Text('按钮'))
 
-// ❌ 废弃：WillPopScope (Flutter 3.12+)
+// ❌ 废弃：WillPopScope (Flutter 3.12.0+)
 WillPopScope(
   onWillPop: () async => true,
   child: child,
 )
 
-// ✅ 推荐：PopScope
-PopScope(
+// ✅ 推荐：PopScope (Flutter 3.12+)
+// 注意：onPopInvoked 在 Flutter 3.22+ 中废弃，使用 onPopInvokedWithResult
+PopScope<Object?>(
   canPop: true,
-  onPopInvokedWithResult: (didPop, result) { },
+  onPopInvokedWithResult: (bool didPop, Object? result) {
+    // 处理返回结果
+  },
   child: child,
 )
 

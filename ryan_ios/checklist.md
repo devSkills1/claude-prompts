@@ -27,6 +27,8 @@
 
 **P0 - 必须检查：**
 - [ ] 是否只依赖 ptrace(PT_DENY_ATTACH)（❌ 单点极易失效）
+  - 注意：iOS 11+ 部分场景下 ptrace 行为有变化
+  - arm64e 设备（A12+）可能需要额外处理
 - [ ] 是否存在 sysctl / syscall / task_info 组合策略
 - [ ] 检测是否放在尽量早的执行路径（+load 或 main 之前）
 - [ ] 调试检测失败是否可降级（而不是直接闪退）
@@ -112,7 +114,8 @@
 - [ ] 主线程是否有同步锁 / semaphore 阻塞
 - [ ] viewDidLoad 是否有同步网络请求
 - [ ] viewDidLoad 是否有大数据加载（> 1MB）
-- [ ] applicationDidFinishLaunching 耗时是否 > 100ms
+- [ ] applicationDidFinishLaunching 同步代码耗时是否 > 400ms
+  - 建议：控制在 400ms 以内，剩余启动任务延迟到 didBecomeActive 或空闲时执行
 - [ ] JSON 解析 / 加解密是否放在后台线程
 
 **风险点：**
@@ -198,6 +201,16 @@
   - 检查 Xcode Warnings 中的 'deprecated' 警告
   - 必须替换为官方推荐的新 API
   - 如需兼容旧版本，使用 `@available` 判断（见下方示例）
+
+  **常见废弃 API 示例：**
+  | 废弃 API | 替代方案 | 废弃版本 |
+  |----------|----------|----------|
+  | `UIWebView` | `WKWebView` | iOS 12 |
+  | `UIAlertView` | `UIAlertController` | iOS 9 |
+  | `UIActionSheet` | `UIAlertController` | iOS 8 |
+  | `addressBook` 框架 | `Contacts` 框架 | iOS 9 |
+  | `UIApplication.openURL(_:)` | `open(_:options:completionHandler:)` | iOS 10 |
+  | `UITableViewCell.textLabel/detailTextLabel` | `contentConfiguration` | iOS 14 |
 - [ ] 是否动态加载可疑 dylib（Runtime dlopen）
 - [ ] 是否读取越权系统路径（/var/mobile/Library）
 - [ ] 是否存在"反审查"行为（检测审核环境）
@@ -238,17 +251,24 @@ if #available(iOS 13.0, *) {
 
 ❌ **禁止：硬编码系统版本号**
 ```objc
-// 错误示例 - 不要这样做
+// 错误示例 1 - floatValue 精度丢失
 NSString *version = [[UIDevice currentDevice] systemVersion];
-if ([version floatValue] >= 13.0) {  // 字符串比较不可靠
+if ([version floatValue] >= 13.0) {  // 问题："13.4.1" 会被截断为 13.4
+    // ...
+}
+
+// 错误示例 2 - 字符串字典序比较
+if ([version compare:@"13.0"] != NSOrderedAscending) {  // 问题："9.3" > "10.0" 判断错误
     // ...
 }
 ```
 
 **原因：**
-- 字符串比较不可靠（"9.3" > "10.0" 会判断错误）
+- 字符串/浮点数比较不可靠（版本号解析容易出错）
 - Apple 官方推荐使用 `@available`
-- 可能无法通过 App Store 审核
+- **编译器会自动检查 API 可用性**，防止运行时崩溃
+- 静态分析工具可正确识别版本保护逻辑
+- 使用已废弃 API 可能无法通过 App Store 审核
 
 ---
 

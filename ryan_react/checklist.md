@@ -163,10 +163,20 @@ vite-bundle-visualizer
 **常见废弃 API 替换示例：**
 
 ```tsx
-// ⚠️ 不推荐：React.FC（React 18 移除隐式 children）
-const MyComponent: React.FC<Props> = ({ children }) => { }
+// ⚠️ 注意：@types/react@18 移除了 React.FC 的隐式 children
+// 如果组件需要 children，必须显式声明
 
-// ✅ 推荐：直接类型标注 props
+// 方式一：在 Props 中显式声明 children
+interface Props {
+  title: string;
+  children: React.ReactNode;
+}
+const MyComponent: React.FC<Props> = ({ title, children }) => { }
+
+// 方式二：使用 PropsWithChildren
+const MyComponent: React.FC<PropsWithChildren<Props>> = ({ children }) => { }
+
+// 方式三：直接类型标注（无需 React.FC）
 const MyComponent = ({ children }: Props & { children?: ReactNode }) => { }
 
 // ❌ 废弃：componentWillMount / componentWillReceiveProps / componentWillUpdate
@@ -201,22 +211,32 @@ const ref = useRef<HTMLDivElement>(null);
 
 | API | 废弃版本 | 移除版本 | 替代方案 |
 |-----|---------|---------|---------|
-| React.FC 隐式 children | React 18 | - | 显式声明 children 类型 |
-| componentWillMount | React 16.3 | React 17 | useEffect(() => {}, []) |
-| componentWillReceiveProps | React 16.3 | React 17 | useEffect(() => {}, [props]) |
-| componentWillUpdate | React 16.3 | React 17 | useEffect(() => {}) |
-| ReactDOM.render | React 18 | React 19 | createRoot(el).render() |
-| findDOMNode | React 16.3 | - | useRef() |
-| Legacy Context (contextTypes) | React 16.3 | React 19 | createContext() |
-| defaultProps (函数组件) | React 18.3 | React 19 | 直接使用默认参数 |
-| propTypes | React 15.5 | - | TypeScript / 运行时验证库 |
+| React.FC 隐式 children | @types/react@18 | - | 显式声明 children 类型 |
+| componentWillMount | React 16.3 | React 19 | useEffect(() => {}, []) |
+| componentWillReceiveProps | React 16.3 | React 19 | useEffect(() => {}, [props]) |
+| componentWillUpdate | React 16.3 | React 19 | useEffect(() => {}) / getSnapshotBeforeUpdate |
+| ReactDOM.render | React 18.0 | React 19 | createRoot(el).render() |
+| ReactDOM.hydrate | React 18.0 | React 19 | hydrateRoot() |
+| findDOMNode | React 16.6 | React 19 | useRef() |
+| Legacy Context (contextTypes) | React 16.6 | React 19 | createContext() |
+| String refs | React 16.3 | React 19 | useRef() / callback refs |
+| defaultProps (函数组件) | React 15.5 | React 19 | ES6 默认参数 |
+| propTypes | React 15.5 | React 19 | TypeScript / 运行时验证库 |
+| React.createFactory | React 16.13 | React 19 | JSX |
 
 **React 19 新特性：**
-- ✅ Actions (`useActionState`, `useFormStatus`)
+- ✅ Actions (`useActionState`, `useFormStatus`, `useFormState`)
 - ✅ `use()` Hook（读取 Promise/Context）
-- ✅ `ref` 作为 props（无需 `forwardRef`）
+- ✅ `ref` 作为 props（无需 `forwardRef`，未来版本将废弃 forwardRef）
 - ✅ `useOptimistic` Hook
-- ✅ React Compiler（自动 memo）
+- ✅ React Compiler（自动 memo，需单独安装）
+- ✅ Document Metadata（原生 `<title>`, `<meta>` 支持）
+- ✅ 资源预加载 API（`preload()`, `preinit()`）
+
+**React 19.2 新特性（2025.10）：**
+- ✅ `<Activity>` 组件（UI 活动状态管理）
+- ✅ `useEffectEvent` Hook（Effect 中的稳定事件回调）
+- ✅ `cacheSignal`（RSC 缓存信号）
 
 ---
 

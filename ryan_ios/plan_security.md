@@ -20,6 +20,8 @@
 - **Hook 检测**：fishhook / Method Swizzle / Substrate / Dobby
 - **中间人攻击**：SSL Pinning / 证书固定
 - **模拟器检测**：iOS Simulator / Corellium
+  - **注意：金融/支付类应用建议提升至 P0**
+  - 模拟器环境无 Secure Enclave，Keychain 保护降级
 - **内存篡改**：运行时内存修改（GameGuardian / iGameGod）
 
 ## P2（可选防护）

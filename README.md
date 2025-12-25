@@ -234,8 +234,8 @@ AI: [输出完整的安全分析和执行方案...]
 
 ```bash
 # 创建 Flutter 模板目录
-mkdir -p flutter
-cd flutter
+mkdir -p ryan_flutter
+cd ryan_flutter
 
 # 创建模板文件
 touch README.md
@@ -378,7 +378,7 @@ rm -rf ~/.claude/
 
 ```bash
 # 方式 1：批量替换
-sed -i '' 's/旧内容/新内容/g' */code_execute_step.md
+sed -i '' 's/旧内容/新内容/g' ryan_*/code_execute_step.md
 
 # 方式 2：diff 对比后手动合并
 diff ryan_ios/code_execute_step.md ryan_flutter/code_execute_step.md
