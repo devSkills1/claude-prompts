@@ -382,8 +382,6 @@ sed -i '' 's/旧内容/新内容/g' ryan_*/code_execute_step.md
 
 # 方式 2：diff 对比后手动合并
 diff ryan_ios/code_execute_step.md ryan_flutter/code_execute_step.md
-
-# 方式 3：使用脚本（scripts/sync-improvements.sh）
 ```
 
 ### 业界参考

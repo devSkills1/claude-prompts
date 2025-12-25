@@ -223,6 +223,7 @@ const ref = useRef<HTMLDivElement>(null);
 | defaultProps (函数组件) | React 15.5 | React 19 | ES6 默认参数 |
 | propTypes | React 15.5 | React 19 | TypeScript / 运行时验证库 |
 | React.createFactory | React 16.13 | React 19 | JSX |
+| forwardRef | React 19 (计划废弃) | 未来版本 | ref 作为 props 直接传递 |
 
 **React 19 新特性：**
 - ✅ Actions (`useActionState`, `useFormStatus`, `useFormState`)

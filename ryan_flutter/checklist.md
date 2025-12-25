@@ -192,6 +192,33 @@ Theme.of(context).accentColor
 Theme.of(context).colorScheme.secondary
 ```
 
+**Flutter 重要废弃 API 补充：**
+
+| 废弃 API | 替代方案 | 废弃版本 |
+|---------|---------|---------|
+| `TextTheme.headline1-6` | `displayLarge/Medium/Small`, `headlineMedium/Small`, `titleLarge` | v3.1 |
+| `TextTheme.bodyText1/2` | `bodyLarge/Medium` | v3.1 |
+| `TextTheme.caption` | `bodySmall` | v3.1 |
+| `TextTheme.button` | `labelLarge` | v3.1 |
+| `TextTheme.overline` | `labelSmall` | v3.1 |
+| `ThemeData.errorColor` | `colorScheme.error` | v3.3 |
+| `ThemeData.backgroundColor` | `colorScheme.background` | v3.3 |
+| `ButtonBar` | `OverflowBar` | v3.21 |
+| `Scaffold.of(context).showSnackBar()` | `ScaffoldMessenger.of(context).showSnackBar()` | v2.0 |
+
+**检查工具：**
+```bash
+# 检查废弃 API
+flutter analyze
+dart analyze
+
+# 检查过时依赖
+flutter pub outdated
+
+# 检查可升级依赖
+flutter pub upgrade --dry-run
+```
+
 ---
 
 ## 3. 平台兼容性

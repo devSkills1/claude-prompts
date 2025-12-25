@@ -272,6 +272,11 @@ enum Direction {
 }
 ```
 
+**const enum 使用限制：**
+- `isolatedModules: true` 时 const enum 会有限制（Vite/esbuild/swc 等）
+- 跨模块使用时需注意编译器行为
+- 建议：现代项目优先使用 `as const` 对象或 union types
+
 ---
 
 ## 4. 错误处理
