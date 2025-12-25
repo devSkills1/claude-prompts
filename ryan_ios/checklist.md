@@ -194,6 +194,10 @@
 
 **P0 - 必须确认：**
 - [ ] 是否使用私有 API（哪怕只 include 头文件）
+- [ ] **是否使用已废弃 (deprecated) 的 API**
+  - 检查 Xcode Warnings 中的 'deprecated' 警告
+  - 必须替换为官方推荐的新 API
+  - 如需兼容旧版本，使用 `@available` 判断（见下方示例）
 - [ ] 是否动态加载可疑 dylib（Runtime dlopen）
 - [ ] 是否读取越权系统路径（/var/mobile/Library）
 - [ ] 是否存在"反审查"行为（检测审核环境）
@@ -202,9 +206,49 @@
 
 **风险点：**
 - 使用私有 API 直接被拒
+- 使用废弃 API 可能在未来版本崩溃或被拒
 - 动态加载代码违反 App Store 政策
 - IDFA 收集需要 ATTrackingManager 授权
 - 热更新功能可能被拒（非 H5）
+
+**iOS 版本兼容性正确做法：**
+
+✅ **推荐：使用 @available 判断**
+```objc
+// Objective-C
+if (@available(iOS 13.0, *)) {
+    // 使用 iOS 13+ API
+    [self useNewAPI];
+} else {
+    // iOS 12 及以下的兼容实现
+    [self useLegacyAPI];
+}
+```
+
+```swift
+// Swift
+if #available(iOS 13.0, *) {
+    // 使用 iOS 13+ API
+    useNewAPI()
+} else {
+    // iOS 12 及以下的兼容实现
+    useLegacyAPI()
+}
+```
+
+❌ **禁止：硬编码系统版本号**
+```objc
+// 错误示例 - 不要这样做
+NSString *version = [[UIDevice currentDevice] systemVersion];
+if ([version floatValue] >= 13.0) {  // 字符串比较不可靠
+    // ...
+}
+```
+
+**原因：**
+- 字符串比较不可靠（"9.3" > "10.0" 会判断错误）
+- Apple 官方推荐使用 `@available`
+- 可能无法通过 App Store 审核
 
 ---
 

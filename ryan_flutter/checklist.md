@@ -132,6 +132,40 @@ adb logcat | grep "ActivityManager"
 
 ---
 
+### 2.4 API 使用规范
+
+**P0 - 必须检查：**
+- [ ] **是否使用已废弃 (deprecated) 的 API**
+  - 检查 Dart Analysis Warnings 中的 deprecated 提示
+  - 必须替换为官方推荐的新 API
+  - 使用 `flutter doctor` 检查 SDK 版本兼容性
+- [ ] 是否使用了未来版本才支持的 API（检查 pubspec.yaml SDK 约束）
+- [ ] 第三方包是否使用最新稳定版本
+
+**P1 - 建议检查：**
+- [ ] 是否有更现代的替代 API（如 Navigator 2.0）
+- [ ] 是否遵循 Dart 3.x null safety 规范
+
+**常见废弃 API 替换示例：**
+
+```dart
+// ❌ 废弃：Scaffold.of(context)
+final scaffold = Scaffold.of(context);
+
+// ✅ 推荐：ScaffoldMessenger
+ScaffoldMessenger.of(context).showSnackBar(
+  SnackBar(content: Text('消息'))
+);
+
+// ❌ 废弃：FlatButton / RaisedButton
+FlatButton(onPressed: () {}, child: Text('按钮'))
+
+// ✅ 推荐：TextButton / ElevatedButton
+TextButton(onPressed: () {}, child: Text('按钮'))
+```
+
+---
+
 ## 3. 平台兼容性
 
 ### 3.1 iOS 兼容性

@@ -146,6 +146,59 @@ vite-bundle-visualizer
 
 ---
 
+### 2.4 API 使用规范
+
+**P0 - 必须检查：**
+- [ ] **是否使用已废弃 (deprecated) 的 React API**
+  - 检查编译警告和 React DevTools 警告
+  - 必须替换为官方推荐的新 API
+  - 使用 ESLint 规则 `react/no-deprecated` 检测
+- [ ] 是否使用了不推荐的生命周期方法
+- [ ] 第三方包是否与当前 React 版本兼容
+
+**P1 - 建议检查：**
+- [ ] 是否有更现代的替代方案（如 React 19 新特性）
+- [ ] 是否遵循最新的 React 最佳实践
+
+**常见废弃 API 替换示例：**
+
+```tsx
+// ❌ 废弃：React.FC（不推荐使用）
+const MyComponent: React.FC<Props> = ({ children }) => { }
+
+// ✅ 推荐：直接类型标注 props
+const MyComponent = ({ children }: Props) => { }
+
+// ❌ 废弃：componentWillMount / componentWillReceiveProps / componentWillUpdate
+class MyComponent extends React.Component {
+  componentWillMount() { }  // 已废弃
+}
+
+// ✅ 推荐：使用 Hooks
+function MyComponent() {
+  useEffect(() => {
+    // 替代 componentDidMount
+  }, []);
+}
+
+// ❌ 废弃：ReactDOM.render (React 18+)
+ReactDOM.render(<App />, document.getElementById('root'));
+
+// ✅ 推荐：createRoot
+import { createRoot } from 'react-dom/client';
+const root = createRoot(document.getElementById('root')!);
+root.render(<App />);
+
+// ❌ 废弃：findDOMNode
+const node = ReactDOM.findDOMNode(this);
+
+// ✅ 推荐：使用 ref
+const ref = useRef<HTMLDivElement>(null);
+<div ref={ref} />
+```
+
+---
+
 ## 3. 无障碍（Accessibility）
 
 ### 3.1 WCAG 2.1 AA 标准
