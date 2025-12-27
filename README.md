@@ -33,6 +33,29 @@ Prompts are designed so AI outputs are directly reusable as tech docs
 ✅ **Multi-Stack Support**
 iOS / Flutter / React / TypeScript (each stack is fully self-contained)
 
+✅ **Universal Analysis Templates**
+Project handover, SDK takeover, and idea feasibility analysis tools
+
+---
+
+## 项目结构
+
+```
+claude-prompts/
+├── ryan_common/           # 通用分析模板
+│   ├── Idea-Feasibility-Analysis.md      # 创意可行性分析
+│   ├── Project-Handover-Guide.md         # GitHub 项目接手指南
+│   └── SDK-Handover-Guide.md             # 公司 SDK 接手指南
+├── ryan_ios/              # iOS 开发模板 (Objective-C/Swift)
+├── ryan_flutter/          # Flutter 开发模板
+├── ryan_react/            # React 开发模板
+├── ryan_ts/               # TypeScript 开发模板
+├── setup.sh               # 自动配置软链接脚本
+└── README.md
+```
+
+每个目录通过软链接机制在任意项目中都可以通过 `@ryan_common/xxx.md` 等方式全局引用。
+
 ---
 
 ## 适合谁？
